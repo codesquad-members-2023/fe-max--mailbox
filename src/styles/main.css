@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+  padding: 20px 10%;
+}
+
+main {
+  display: flex;
+}
+
+section {
+  border: 1px solid black;
+  height: 80vh;
+}
+
+#canvas {
+  flex-grow: 3;
+}
+
+#text-view {
+  flex-grow: 1;
+}
