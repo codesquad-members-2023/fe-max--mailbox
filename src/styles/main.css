@@ -1,21 +1,48 @@
 body {
-  text-align: center;
   padding: 20px 10%;
+}
+
+h1 {
+  text-align: center;
 }
 
 main {
   display: flex;
+  gap: 10px;
 }
 
 section {
-  border: 1px solid black;
   height: 80vh;
 }
 
 #canvas {
-  flex-grow: 3;
+  padding: 15px;
+  position: relative;
+  flex-grow: 8;
+  border: 1px solid black;
 }
 
 #text-view {
   flex-grow: 1;
+  font-size: 1.2rem;
+}
+
+#check-btn {
+  padding: 10px 20px;
+  background-color: rgb(235, 35, 11);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.village {
+  width: 200px;
+  height: 100px;
+  padding: 5px;
+  flex-grow: 1;
+  position: absolute;
+  border: 3px solid rgb(0, 118, 185);
+  border-radius: 8px;
 }
