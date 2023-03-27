@@ -54,4 +54,4 @@
 ### 참고
 
 - [코딩 컨벤션 - Toast UI](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
-- [개발자는 페어 프로그래밍으로 성장한다 - 요즘IT](
+- [개발자는 페어 프로그래밍으로 성장한다 - 요즘IT](https://yozm.wishket.com/magazine/detail/1698/)
