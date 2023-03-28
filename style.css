@@ -2,9 +2,26 @@
   box-sizing: border-box;
 }
 
+main {
+  display: flex;
+}
+
+button {
+  padding: 30px 30px;
+  font-size: 30px;
+}
+
+.info {
+  width: 300px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
 .root {
   display: flex;
-  width: 1000px;
+  width: 1500px;
   height: 1000px;
   border: 1px solid black;
 }
