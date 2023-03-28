@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-main {
-  display: flex;
-}
-
 button {
   padding: 30px 30px;
   font-size: 30px;
@@ -20,13 +16,14 @@ button {
 }
 
 .root {
+  position: relative;
   display: flex;
   width: 1500px;
   height: 1000px;
   border: 1px solid black;
 }
 
-.village {
+.town {
   display: flex;
   border: 3px solid blue;
   border-radius: 20px;
