@@ -4,12 +4,15 @@ document.addEventListener("click", (e) => {
   //   if (e.target.tagName === "button") {
   //   }
   //   traverse(document);
-  console.log(document);
-  console.log(typeof document);
+  // console.log(document);
+  // console.log(typeof document);
+  
   //   console.log(e.target.tagName);
 });
 
-document.addEventListener("DOMContentLoaded", () => {});
+document.addEventListener("DOMContentLoaded", () => {
+  console.log(document.lastChild.lastChild.nodeName)
+});
 
 const a = `
     <div style="left: 100px; width: 100px; height: 100px"></div>

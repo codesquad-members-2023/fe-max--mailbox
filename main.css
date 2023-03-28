@@ -1,17 +1,18 @@
 body {
-  padding: 0;
+  padding: 30px;
   margin: 0;
 }
 
 main {
   padding: 10px 30px;
-  border: 1px solid #000000;
+  border: 1px solid #000;
   width: 1200px;
   height: 1000px;
 }
 
 .flex {
   display: flex;
+  overflow: visible;
 }
 
 h1 {
@@ -22,7 +23,7 @@ section {
   margin-right: 10px;
   width: 900px;
   height: 800px;
-  border: 1px solid #ff0000;
+  border: 1px solid #000;
 }
 
 button {
@@ -35,11 +36,12 @@ button {
 }
 
 p {
+  width: 280px;
   font-size: 25px;
 }
 
 section > div {
   position: relative;
-  border: 1px solid #5274ff;
+  border: 1px solid #0000ff;
   border-radius: 15px;
 }
