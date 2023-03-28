@@ -22,20 +22,37 @@
 4. 진행 중에 둘 다 모르거나 막히는 부분이 생기면 같이 찾아보며 학습하기 그리고 이어서 다시 시작하기
 5. 코어 타임 이후에도 시간이 맞으면 같이 진행하고, 안되면 각자 작업할 부분을 미리 정해서 알려주고 작업하기. 그리고 나중에 작업한 부분 설명해주기
 
-\*진행하면서 수정될 수 있습니다…
+\* 진행하면서 수정될 수 있습니다…
 
 ## ⏰ 학습 및 구현 계획
 
 좌표값을 계산해서 랜덤한 위치에 마을들을 배치해서 구현하려면 너무 어려울 것 같아서 저희들은 위치들을 미리 지정해 놓고 정렬, 탐색 알고리즘들을 학습하는 것을 목표로 잡았습니다.
 
 - [ ] 마을의 위치를 미리 레이아웃으로 짜 둔다.
-  - [ ] 마을의 위치는 position: absolute로 직접 지정해둔다.
-  - [ ] 마을의 위치를 id로 구분한다.
-  - [ ] 마을안에 다른 마을을 자식 요소로 포함시킨다.
+  - [x] 마을의 위치는 position: absolute로 직접 지정해둔다.
+  - [x] 마을의 위치를 id로 구분한다.
+  - [x] 마을안에 다른 마을을 자식 요소로 포함시킨다.
+  - [ ] 마을명 이쁘게 표시해주기
+- [ ] 랜덤한 크기와 갯수의 우체통 렌더링하기
+  - [ ] 우체통을 어떤 요소로 넣을지 고민해보기
 - [ ] DOM APIs 원리를 찾아본다.
-  - [ ] querySelector(), querySelectorAll()
-  - [ ] getElementById()
+  - [x] querySelector(), querySelectorAll()
+  - [x] getElementById()
   - [ ] Array.prototype.sort()
-- [ ] 탐색 알고리즘 공부하기
+- [x] 탐색 알고리즘 공부하기
+- [ ] myQuerySelector() 구현하기
+  - [x] id로 일치하는 노드 찾는 함수 구현하기
+  - [x] tagName으로 일치하는 노드 찾는 함수 구현하기
+  - [x] class명으로 일치하는 노드 찾는 함수 구현하기
+  - [ ] querySelector()처럼 동작하는 myQuerySelector() 구현하기
+- [ ] myQuerySelectorAll() 구현하기 
 - [ ] 정렬 알고리즘 공부하기
 - [ ] 비동기 프로그래밍 공부하기
+
+## 📚 학습정리
+### 1) Tree traversal algorithms (트리 순회 알고리즘)
+(1) DFS & BFS
+
+(2) pre-order traversal
+
+(3) querySelector(), getElementById(), getElementByTagName(), getElementByClassName()
