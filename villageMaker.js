@@ -1,16 +1,37 @@
 import { Town } from './Town.js';
 
-const isOverlap = (prevTownInfo, currentTownInfo) => {
-  if (
-    prevTownInfo.x + prevTownInfo.width <= currentTownInfo.x ||
-    currentTownInfo.x + currentTownInfo.width <= prevTownInfo.x
-  ) {
-    return false;
+export const villageMaker = (parentWidth = 1500, parentHeight = 1000) => {
+  const MAX_TOWN_COUNT = 10;
+  const village = [];
+  let trialCount = 0;
+
+  while (village.length < MAX_TOWN_COUNT) {
+    if (trialCount === 3) {
+      return village;
+    }
+
+    const town = new Town(village.length, parentWidth, parentHeight);
+    if (village.length && isOverlapWithPreTowns(village, town)) {
+      trialCount++;
+      continue;
+    }
+
+    village.push(town);
   }
 
+  return village;
+};
+
+const isOverlapWithPreTowns = (towns, town) => {
+  return towns.some((prevTown) => isOverlap(prevTown, town));
+};
+
+const isOverlap = (prevTown, currentTown) => {
   if (
-    prevTownInfo.y + prevTownInfo.height <= currentTownInfo.y ||
-    currentTownInfo.y + currentTownInfo.height <= prevTownInfo.y
+    isLocatedLeft(prevTown, currentTown) ||
+    isLocatedRight(prevTown, currentTown) ||
+    isLocatedTop(prevTown, currentTown) ||
+    isLocatedBottom(prevTown, currentTown)
   ) {
     return false;
   }
@@ -18,27 +39,18 @@ const isOverlap = (prevTownInfo, currentTownInfo) => {
   return true;
 };
 
-const hasOverlapPretown = (towns, town) => {
-  return towns.some((prevTown) => isOverlap(prevTown.info, town.info));
+const isLocatedLeft = (prevTown, currentTown) => {
+  return prevTown.pointX + prevTown.width < currentTown.pointX;
 };
 
-export const villageMaker = (parentWidth = 1500, parentHeight = 1000) => {
-  const MAX_TOWN_COUNT = 10;
-  let makeTrialCount = 0;
-  const towns = [];
+const isLocatedRight = (prevTown, currentTown) => {
+  return currentTown.pointX + currentTown.width < prevTown.pointX;
+};
 
-  while (towns.length < MAX_TOWN_COUNT) {
-    if (makeTrialCount === 3) {
-      return towns;
-    }
+const isLocatedTop = (prevTown, currentTown) => {
+  return prevTown.pointY + prevTown.height < currentTown.pointY;
+};
 
-    const town = new Town(towns.length, parentWidth, parentHeight);
-    if (towns.length && hasOverlapPretown(towns, town)) {
-      makeTrialCount++;
-      continue;
-    }
-    towns.push(town);
-  }
-
-  return towns;
+const isLocatedBottom = (prevTown, currentTown) => {
+  return currentTown.pointY + currentTown.height < prevTown.pointY;
 };

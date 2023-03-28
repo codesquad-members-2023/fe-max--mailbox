@@ -27,13 +27,4 @@ export class Town {
   makeRandomPoint(parentLength, length) {
     return Math.floor(Math.random() * (parentLength - 10 - length));
   }
-
-  get info() {
-    return {
-      x: this.pointX,
-      y: this.pointY,
-      width: this.width,
-      height: this.height,
-    };
-  }
 }
