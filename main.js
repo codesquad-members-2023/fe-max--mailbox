@@ -21,6 +21,12 @@ const createTownNode = (town) => {
   element.style.left = `${town.pointX}px`;
   element.style.position = 'absolute';
 
+  if (town.hasMailbox) {
+    const mailbox = document.createElement('span');
+    mailbox.textContent = '📮';
+    element.append(mailbox);
+  }
+
   if (town.children) {
     makeVillageView(town.children, element);
   }

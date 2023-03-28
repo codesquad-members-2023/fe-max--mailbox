@@ -1,11 +1,17 @@
 import { Town } from './Town.js';
 
 const isOverlap = (prevTownInfo, currentTownInfo) => {
-  if (prevTownInfo.x + prevTownInfo.width <= currentTownInfo.x || currentTownInfo.x + currentTownInfo.width <= prevTownInfo.x) {
+  if (
+    prevTownInfo.x + prevTownInfo.width <= currentTownInfo.x ||
+    currentTownInfo.x + currentTownInfo.width <= prevTownInfo.x
+  ) {
     return false;
   }
 
-  if (prevTownInfo.y + prevTownInfo.height <= currentTownInfo.y || currentTownInfo.y + currentTownInfo.height <= prevTownInfo.y) {
+  if (
+    prevTownInfo.y + prevTownInfo.height <= currentTownInfo.y ||
+    currentTownInfo.y + currentTownInfo.height <= prevTownInfo.y
+  ) {
     return false;
   }
 
@@ -31,7 +37,6 @@ export const villageMaker = (parentWidth = 1500, parentHeight = 1000) => {
       makeTrialCount++;
       continue;
     }
-
     towns.push(town);
   }
 
