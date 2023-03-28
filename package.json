@@ -1,0 +1,25 @@
+{
+  "name": "fe-max--mailbox",
+  "version": "1.0.0",
+  "description": "- 페어 프로그래밍에 대해 알아보고 직접 적용해본다.\r - DOM API의 원리를 안다.\r - 탐색 알고리즘을 학습하고 이해한다. 우리들만의 querySelector를 직접 구현해본다.\r - 정렬 알고리즘을 학습하고 이해한다. 우리들만의 정렬 알고리즘을 직접 구현한다.\r - 비동기 프로그래밍 학습한다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silvertae/fe-max--mailbox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/silvertae/fe-max--mailbox/issues"
+  },
+  "homepage": "https://github.com/silvertae/fe-max--mailbox#readme",
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
+  }
+}
