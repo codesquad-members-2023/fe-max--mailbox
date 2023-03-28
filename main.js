@@ -1,17 +1,15 @@
 import { villageMaker } from './villageMaker.js';
 
 function main() {
-  const root = document.querySelector('root');
+  const root = document.querySelector('.root');
 
   const towns = villageMaker();
-  makeVillageView(towns);
-  console.log(towns);
+  makeVillageView(towns, root);
 }
 
-const makeVillageView = (towns) => {
-  const main = document.querySelector('.root');
+const makeVillageView = (towns, parent = root) => {
   const townsView = towns.map(createTownNode);
-  main.append(...townsView);
+  parent.append(...townsView);
 };
 
 const createTownNode = (town) => {
@@ -22,6 +20,11 @@ const createTownNode = (town) => {
   element.style.top = `${town.pointY}px`;
   element.style.left = `${town.pointX}px`;
   element.style.position = 'absolute';
+
+  if (town.children) {
+    makeVillageView(town.children, element);
+  }
+
   return element;
 };
 
