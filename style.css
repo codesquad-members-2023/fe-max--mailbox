@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+.root {
+  display: flex;
+  width: 1000px;
+  height: 1000px;
+  border: 1px solid black;
+}
+
+.village {
+  display: flex;
+  border: 3px solid blue;
+  border-radius: 20px;
+}
