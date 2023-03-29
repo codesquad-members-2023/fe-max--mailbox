@@ -10,7 +10,7 @@ export const villageMaker = (parentWidth = 1500, parentHeight = 1000) => {
       return village;
     }
 
-    const town = new Town(village.length, parentWidth, parentHeight);
+    const town = new Town(parentWidth, parentHeight);
     if (village.length && isOverlapWithPreTowns(village, town)) {
       trialCount++;
       continue;
