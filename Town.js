@@ -11,6 +11,11 @@ export class Town {
     this.pointY = this.makeRandomPoint(parentHeight, this.height);
     this.children = this.makeChildren();
     this.hasMailbox = Math.random() < 0.4;
+    this.mailboxSize = 0;
+  }
+
+  setMailboxSize(size) {
+    this.mailboxSize = size;
   }
 
   makeChildren() {
@@ -21,10 +26,10 @@ export class Town {
   }
 
   makeRandomLength(parentLength, minLength) {
-    return Math.floor(Math.random() * (parentLength / 2 - minLength + 1)) + minLength;
+    return Math.floor(Math.random() * (parentLength / 2 - minLength)) + (minLength - 10);
   }
 
   makeRandomPoint(parentLength, length) {
-    return Math.floor(Math.random() * (parentLength - 10 - length));
+    return Math.floor(Math.random() * (parentLength - 20 - length)) + 10;
   }
 }
