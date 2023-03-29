@@ -1,6 +1,37 @@
-import { villageMaker } from './villageMaker.js';
+import { isOverlapWithPreTowns } from './isOverlapWithPreTowns.js';
+import { mailboxSizeMaker, townNameMaker } from './villageUtils.js';
 
-export class Town {
+export const makeVillage = (rootWidth, rootHeight) => {
+  const village = villageMaker(rootWidth, rootHeight);
+  townNameMaker.makeName(village);
+  mailboxSizeMaker.makeAllMailboxSize(village);
+
+  return village;
+};
+
+const villageMaker = (parentWidth = rootWidth, parentHeight = rootHeight) => {
+  const village = [];
+  const MAX_TOWN_COUNT = 10;
+  let trialCount = 0;
+
+  while (village.length < MAX_TOWN_COUNT) {
+    if (trialCount === 3) {
+      return village;
+    }
+
+    const town = new Town(parentWidth, parentHeight);
+    if (village.length && isOverlapWithPreTowns(village, town)) {
+      trialCount++;
+      continue;
+    }
+
+    village.push(town);
+  }
+
+  return village;
+};
+
+class Town {
   constructor(parentWidth, parentHeight) {
     this.name = '';
     this.MIN_WIDTH = 100;
@@ -37,39 +68,3 @@ export class Town {
     return Math.floor(Math.random() * (parentLength - 20 - length)) + 10;
   }
 }
-
-export const townNameMaker = {
-  townNameStorage: [],
-
-  makeName(village) {
-    village.forEach((el) => {
-      const townName = String.fromCharCode(this.townNameStorage.length + 65);
-      this.townNameStorage.push(townName);
-      el.setName(townName);
-
-      if (el.children) {
-        this.makeName(el.children);
-      }
-    });
-  },
-};
-
-export const mailboxSizeMaker = {
-  mailboxSizeStorage: new Map(),
-
-  makeAllMailboxSize(village) {
-    village.forEach((el) => {
-      while (el.hasMailbox) {
-        const randomSize = Math.floor(Math.random() * 100) + 1;
-        if (!this.mailboxSizeStorage.has(randomSize)) {
-          el.setMailboxSize(randomSize);
-          this.mailboxSizeStorage.set(randomSize, el.name);
-          break;
-        }
-      }
-      if (el.children) {
-        this.makeAllMailboxSize(el.children);
-      }
-    });
-  },
-};

@@ -1,28 +1,4 @@
-import { Town } from './Town.js';
-
-export const villageMaker = (parentWidth = 1500, parentHeight = 1000) => {
-  const MAX_TOWN_COUNT = 10;
-  const village = [];
-  let trialCount = 0;
-
-  while (village.length < MAX_TOWN_COUNT) {
-    if (trialCount === 3) {
-      return village;
-    }
-
-    const town = new Town(parentWidth, parentHeight);
-    if (village.length && isOverlapWithPreTowns(village, town)) {
-      trialCount++;
-      continue;
-    }
-
-    village.push(town);
-  }
-
-  return village;
-};
-
-const isOverlapWithPreTowns = (towns, town) => {
+export const isOverlapWithPreTowns = (towns, town) => {
   return towns.some((prevTown) => isOverlap(prevTown, town));
 };
 
