@@ -9,12 +9,11 @@ function main() {
   const village = makeVillage(ROOT_WIDTH, ROOT_HEIGHT);
   makeVillageView(village, root);
 
-  // TODO: 버튼 클릭 이벤트 등록해야 함
   const buttonNode = domAPI.querySelector('.mailbox-search-button');
   buttonNode.addEventListener('click', searchMailboxTown);
 }
 
-const searchMailboxTown = () => {
+const searchMailboxTown = async () => {
   const mailboxTowns = searchMailbox();
 
   const unSortedTownInfo = mailboxTowns.map((townNode) => {
@@ -26,6 +25,17 @@ const searchMailboxTown = () => {
 
   const sortedTownInfo = mergeSortMailboxTown(unSortedTownInfo);
   makeInfoView(unSortedTownInfo, sortedTownInfo);
+  await wait(2);
+  mailboxTowns.forEach((town) => (town.style.border = '3px solid red'));
+};
+
+const wait = (seconds) => {
+  return new Promise((resolve, reject) => {
+    if (!seconds || seconds < 0) {
+      reject(new Error('seconds는 0보다 큰 숫자만 입력해주세요.'));
+    }
+    setTimeout(resolve, seconds * 1000);
+  });
 };
 
 const makeInfoView = (unSortedTownInfo, sortedTownInfo) => {
