@@ -47,12 +47,9 @@ export const domAPI = {
 
   getElementById(idName, parentNode) {},
 
-  isElement(node) {
-    return node.nodeType === 1;
-  },
-
-  traverse(parentNode = this.htmlNode, filter) {
+  traverse(parentNode = this.htmlNode, isMatchingNode) {
     const nodeList = [];
+
     if (!parentNode) {
       return [];
     }
@@ -65,10 +62,10 @@ export const domAPI = {
       });
     }
 
-    if (!filter) {
+    if (!isMatchingNode) {
       return nodeList;
     }
 
-    return nodeList.filter(filter);
+    return nodeList.filter(isMatchingNode);
   },
 };

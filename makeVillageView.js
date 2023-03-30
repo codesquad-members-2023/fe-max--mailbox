@@ -7,7 +7,8 @@ const createTownNode = (town) => {
   const townNode = document.createElement('div');
   const { name, width, height, pointY, pointX, hasMailbox, children, mailboxSize } = town;
 
-  townNode.classList.add('town', name);
+  townNode.classList.add('town');
+  townNode.dataset['name'] = name;
   townNode.style.width = `${width}px`;
   townNode.style.height = `${height}px`;
   townNode.style.top = `${pointY}px`;
