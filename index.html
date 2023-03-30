@@ -4,21 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./main.css" />
-    <script defer src="./main.js"></script>
+    <link rel="stylesheet" href="./src/style/main.css" />
+    <script type="module" src="./src/js/index.js"></script>
     <title>mail-box</title>
   </head>
   <body>
-    <main>
-      <h1>마을 지도</h1>
-      <div class="flex">
-        <section class="map"></section>
+    <section>
+      <header>
+        <h1>마을 지도 </h1>
+      </header>
+      <div class="main-container">
+        <main class="town-map"></main>
         <div>
           <button>빨간 우체통 확인</button>
           <p>총 개의 마을입니다.</p>
           <p>우체통의 크기는 순입니다.</p>
         </div>
       </div>
-    </main>
+    </section>
   </body>
 </html>
