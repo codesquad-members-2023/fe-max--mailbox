@@ -1,55 +1,59 @@
 class Town {
     static townCount = 0;
-    constructor(outer) {
+    constructor(parent) {
         this.name = String.fromCharCode(65 + Town.townCount);
-        this.width = `${this.randomLength(outer.offsetWidth)}px`;
-        this.height = `${this.randomLength(outer.offsetHeight)}px`;
-        this.left = `${this.randomPoint(outer.offsetWidth)}px`;
-        this.top = `${this.randomPoint(outer.offsetHeight)}px`;
-        this.inner = document.createElement("div");
+        this.width = this.setRandomSize(parent.offsetWidth);
+        this.height = this.setRandomSize(parent.offsetHeight);
+        this.left = this.setRandomCoordinate(parent.offsetWidth);
+        this.top = this.setRandomCoordinate(parent.offsetHeight);
+        this.child = document.createElement("div");
     }
 
-    randomPoint(outerLength) {
-        const centerPoint = outerLength / 2;
+    setRandomSize(parentSize) {
+        const minSize = 100;
+        const maxSize = parentSize / 2 - minSize;
+        return Math.floor(Math.random() * maxSize) + minSize;
+    }
+
+    setRandomCoordinate(parentSize) {
+        const centerPoint = parentSize / 2;
         return Math.floor(Math.random() * centerPoint);
     }
 
-    randomLength(outerLength) {
-        const minLength = 100;
-        const maxLength = outerLength / 2 - minLength;
-        return Math.floor(Math.random() * maxLength) + minLength;
+    setChildStyle() {
+        this.child.textContent = this.name;
+        this.child.style.left = this.left + "px";
+        this.child.style.top = this.top + "px";
+        this.child.style.width = this.width + "px";
+        this.child.style.height = this.height + "px";
+        this.child.className = "town";
     }
 
-    appendInnerTown(outer) {
-        this.inner.textContent = this.name;
-        this.inner.style.left = this.left;
-        this.inner.style.top = this.top;
-        this.inner.style.width = this.width;
-        this.inner.style.height = this.height;
-        this.inner.className = "town";
-        outer.appendChild(this.inner);
+    appendChildTown(parent) {
+        parent.appendChild(this.child);
     }
 }
 
-function checkInside(outer, inner) {
-    const innerX = parseInt(inner.left) + parseInt(inner.width);
-    const innerY = parseInt(inner.top) + parseInt(inner.height);
-    const outerX = outer.offsetWidth;
-    const outerY = outer.offsetHeight;
-    return innerX < outerX && innerY < outerY;
+function checkInside(parent, child) {
+    const childX = parseInt(child.left) + parseInt(child.width);
+    const childY = parseInt(child.top) + parseInt(child.height);
+    const parentX = parent.offsetWidth;
+    const parentY = parent.offsetHeight;
+    return childX < parentX && childY < parentY;
 }
 
-function createLoopTown(outer) {
+function createNestedTown() {
     const townMap = document.querySelector(".town-map");
-    outer = townMap;
-    const maxDepth = 3;
+    let parent = townMap;
+    const maxDepth = 4;
     let currentDepth = 1;
     while (currentDepth <= maxDepth) {
-        const newTown = new Town(outer);
-        const isInside = checkInside(outer, newTown);
+        const newTown = new Town(parent);
+        const isInside = checkInside(parent, newTown);
         if (isInside) {
-            newTown.appendInnerTown(outer);
-            outer = newTown.inner;
+            newTown.setChildStyle(parent);
+            newTown.appendChildTown(parent);
+            parent = newTown.child;
             Town.townCount++;
             currentDepth++;
         } else {
@@ -58,20 +62,24 @@ function createLoopTown(outer) {
     }
 }
 
-function fn() {
-    createLoopTown();
-    const towns = document.querySelectorAll(".town-map > div");
-    for (let town of towns) {
-        const left = town.offsetLeft;
-        const right = town.offsetLeft + town.offsetWidth;
-        const top = 
-        const bottom = 
-        (width > left && width < right)
+// function fn() {
+//     createNestedTown();
+//     const townsInfo = [];
+//     const towns = document.querySelectorAll(".town-map > div");
+//     for (let town of towns) {
+//         const left = town.offsetLeft;
+//         const right = town.offsetLeft + town.offsetWidth;
+//         const top = town.offsetTop;
+//         const bottom = town.offsetTop + town.offsetHeight;
+//         //if(!(width > left && width < right) && !(height > top && height < bottom)){
+//             createNestedTown
+//         }
+//         console.log(town.offsetWidth, town.offsetHeight);
+//         //
+//     }
+// }
 
-    }
-}
-
-fn();
+// fn();
 
 // createLoopTown();
 // createLoopTown();
