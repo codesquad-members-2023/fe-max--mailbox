@@ -41,15 +41,16 @@ function createVillageEl(villageInfo) {
 }
 
 function createVillageInfos() {
-  let maxNumVillages = getRandomBetween(5, 15);
+  let maxNumVillages = getRandomBetween(20, 30);
   const parentVillageInfos = [];
   let villageNameCode = 65;
 
   while (maxNumVillages > 0) {
     maxNumVillages--;
+    const randIdx = getRandomBetween(0, parentVillageInfos.length + 1);
     const parentInfo =
-      parentVillageInfos.length > 0
-        ? parentVillageInfos[getRandomBetween(0, parentVillageInfos.length)]
+      randIdx < parentVillageInfos.length
+        ? parentVillageInfos[randIdx]
         : canvasInfo;
 
     const villageInfo = new VillageInfo(
@@ -68,7 +69,7 @@ function createVillageInfos() {
 }
 
 function checkOverlapWithSiblings(villageInfo) {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 60; i++) {
     if (villageInfo.isOverlappingWithSiblings()) {
       villageInfo.generateSizeAndPosition();
     } else {

@@ -15,12 +15,12 @@ export default class VillageInfo {
 
   generateSize() {
     this.width = getRandomBetween(
-      this.parentInfo.width * 0.1,
-      this.parentInfo.width * 0.7
+      this.parentInfo.width * 0.3,
+      this.parentInfo.width * 0.4
     );
     this.height = getRandomBetween(
-      this.parentInfo.height * 0.1,
-      this.parentInfo.height * 0.7
+      this.parentInfo.height * 0.3,
+      this.parentInfo.height * 0.4
     );
   }
 
@@ -65,7 +65,7 @@ export default class VillageInfo {
   }
 
   isValidSize() {
-    return this.width > 50 && this.height > 50;
+    return this.width > 20 && this.height > 20;
   }
 
   createEl() {
