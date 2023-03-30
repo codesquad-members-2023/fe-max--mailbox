@@ -1,6 +1,5 @@
 //DFSPreOrder
 export const domAPI = {
-  nodeList: [],
   htmlNode: document.firstElementChild,
 
   querySelector(selector, parentNode = this.htmlNode) {
@@ -22,20 +21,18 @@ export const domAPI = {
   getElementByclassName(className, parentNode = this.htmlNode) {
     for (const node of this.traverse(parentNode)) {
       if (node.classList.contains(className)) {
-        this.clearNodeList();
         return node;
       }
     }
-    this.clearNodeList();
     return null;
   },
 
   getElementByTagName(tagName, parentNode = this.htmlNode) {
-    const isButtonElement = (node) => {
-      return node.nodeName === 'BUTTON';
+    const isTagNameElement = (node) => {
+      return node.nodeName === tagName.toUpperCase();
     };
-    const searchNodes = this.traverse(parentNode).filter(isButtonElement);
-    this.clearNodeList();
+
+    const searchNodes = this.traverse(parentNode, isTagNameElement);
     return searchNodes;
   },
 
@@ -43,8 +40,8 @@ export const domAPI = {
     const filterByClassName = (node) => {
       return node.classList.contains(className);
     };
-    const searchNodes = this.traverse(parentNode).filter(filterByClassName);
-    this.clearNodeList();
+    const searchNodes = this.traverse(parentNode, filterByClassName);
+
     return searchNodes;
   },
 
@@ -54,22 +51,24 @@ export const domAPI = {
     return node.nodeType === 1;
   },
 
-  // TODO: 인자로 필터링 조건 함수 받아서 콜백 실행
-  traverse(parentNode = this.htmlNode) {
+  traverse(parentNode = this.htmlNode, filter) {
+    const nodeList = [];
     if (!parentNode) {
-      return;
+      return [];
     }
 
-    domAPI.nodeList.push(parentNode);
+    nodeList.push(parentNode);
 
     if (parentNode.children) {
-      [...parentNode.children].forEach(domAPI.traverse);
+      Array.from(parentNode.children).forEach((childNode) => {
+        nodeList.push(...domAPI.traverse(childNode));
+      });
     }
 
-    return domAPI.nodeList;
-  },
+    if (!filter) {
+      return nodeList;
+    }
 
-  clearNodeList() {
-    this.nodeList = [];
+    return nodeList.filter(filter);
   },
 };
