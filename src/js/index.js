@@ -1,14 +1,12 @@
 class Town {
     static townCount = 0;
     constructor(outer) {
-        // this.outer = outer;
         this.name = String.fromCharCode(65 + Town.townCount);
         this.width = `${this.randomLength(outer.offsetWidth)}px`;
         this.height = `${this.randomLength(outer.offsetHeight)}px`;
         this.left = `${this.randomPoint(outer.offsetWidth)}px`;
         this.top = `${this.randomPoint(outer.offsetHeight)}px`;
         this.inner = document.createElement("div");
-        
     }
 
     randomPoint(outerLength) {
@@ -28,8 +26,17 @@ class Town {
         this.inner.style.top = this.top;
         this.inner.style.width = this.width;
         this.inner.style.height = this.height;
+        this.inner.className = "town";
         outer.appendChild(this.inner);
     }
+}
+
+function checkInside(outer, inner) {
+    const innerX = parseInt(inner.left) + parseInt(inner.width);
+    const innerY = parseInt(inner.top) + parseInt(inner.height);
+    const outerX = outer.offsetWidth;
+    const outerY = outer.offsetHeight;
+    return innerX < outerX && innerY < outerY;
 }
 
 function createLoopTown(outer) {
@@ -39,12 +46,8 @@ function createLoopTown(outer) {
     let currentDepth = 1;
     while (currentDepth <= maxDepth) {
         const newTown = new Town(outer);
-        const currentX = parseInt(newTown.left) + parseInt(newTown.width);
-        const currentY = parseInt(newTown.top) + parseInt(newTown.height);
-        const outerX = outer.offsetWidth;
-        const outerY = outer.offsetHeight;
-        const isNotOverlap = currentX < outerX && currentY < outerY;
-        if (isNotOverlap) {
+        const isInside = checkInside(outer, newTown);
+        if (isInside) {
             newTown.appendInnerTown(outer);
             outer = newTown.inner;
             Town.townCount++;
@@ -55,9 +58,23 @@ function createLoopTown(outer) {
     }
 }
 
-createLoopTown();
-createLoopTown();
-createLoopTown();
+function fn() {
+    createLoopTown();
+    const towns = document.querySelectorAll(".town-map > div");
+    for (let town of towns) {
+        const left = town.offsetLeft;
+        const right = town.offsetLeft + town.offsetWidth;
+        const top = 
+        const bottom = 
+        (width > left && width < right)
+
+    }
+}
+
+fn();
+
+// createLoopTown();
+// createLoopTown();
 
 // console.log(townMap.getBoundingClientRect());
 
