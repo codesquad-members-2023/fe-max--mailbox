@@ -17,7 +17,7 @@ section {
   height: 80%;
 }
 
-#canvas {
+#village-map {
   padding: 15px;
   position: relative;
   flex-grow: 8;

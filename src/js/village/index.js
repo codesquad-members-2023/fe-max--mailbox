@@ -1,21 +1,21 @@
 import VillageInfo from "./VillageInfo.js";
 import { getRandomBetween } from "../utils/index.js";
 
-const canvas = document.querySelector("#canvas");
-const canvasRect = canvas.getBoundingClientRect();
-const canvasInfo = {
+const villageMap = document.querySelector("#village-map");
+const villageMapRect = villageMap.getBoundingClientRect();
+const villageMapInfo = {
   childrenInfos: [],
-  width: canvasRect.width,
-  height: canvasRect.height,
+  width: villageMapRect.width,
+  height: villageMapRect.height,
 };
 const createdVillageNames = new Set();
 
 export function renderVillageEls() {
   createVillageInfos();
 
-  canvasInfo.childrenInfos.forEach((childInfo) => {
+  villageMapInfo.childrenInfos.forEach((childInfo) => {
     if (createdVillageNames.has(childInfo.name)) return;
-    canvas.append(createVillageEl(childInfo));
+    villageMap.append(createVillageEl(childInfo));
   });
 }
 
@@ -43,7 +43,7 @@ function createVillageInfos() {
     const parentInfo =
       randIdx < parentVillageInfos.length
         ? parentVillageInfos[randIdx]
-        : canvasInfo;
+        : villageMapInfo;
 
     const villageInfo = new VillageInfo(
       String.fromCharCode(villageNameCode),
