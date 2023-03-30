@@ -8,7 +8,7 @@ export function customQuerySelector(selector) {
     : findByTypeAndName(startEl, selectorType, selectorName);
 }
 
-function parseSelector(selector) {
+export function parseSelector(selector) {
   const type = getSelectorType(selector);
   const name = type === "tag" ? selector : selector.slice(1);
   return [type, name];
