@@ -1,6 +1,16 @@
 import { getRandomBetween } from "../utils/index.js";
 
 export default class VillageInfo {
+  static sizeRatio = {
+    min: 0.3,
+    max: 0.4,
+  };
+
+  static positionRatio = {
+    min: 0.1,
+    max: 0.8,
+  };
+
   constructor(name, parentInfo) {
     this.name = name;
     this.parentInfo = parentInfo;
@@ -15,39 +25,33 @@ export default class VillageInfo {
 
   generateSize() {
     this.width = getRandomBetween(
-      this.parentInfo.width * 0.3,
-      this.parentInfo.width * 0.4
+      this.parentInfo.width * VillageInfo.sizeRatio.min,
+      this.parentInfo.width * VillageInfo.sizeRatio.max
     );
     this.height = getRandomBetween(
-      this.parentInfo.height * 0.3,
-      this.parentInfo.height * 0.4
+      this.parentInfo.height * VillageInfo.sizeRatio.min,
+      this.parentInfo.height * VillageInfo.sizeRatio.max
     );
   }
 
   generatePosition() {
     this.top = getRandomBetween(
-      (this.parentInfo.height - this.height) * 0.1,
-      (this.parentInfo.height - this.height) * 0.8
+      (this.parentInfo.height - this.height) * VillageInfo.positionRatio.min,
+      (this.parentInfo.height - this.height) * VillageInfo.positionRatio.max
     );
     this.left = getRandomBetween(
-      (this.parentInfo.width - this.width) * 0.1,
-      (this.parentInfo.width - this.width) * 0.8
+      (this.parentInfo.width - this.width) * VillageInfo.positionRatio.min,
+      (this.parentInfo.width - this.width) * VillageInfo.positionRatio.max
     );
 
-    this.bottom = this.getBottom();
-    this.right = this.getRight();
-  }
-
-  getBottom() {
-    return this.top + this.height;
-  }
-
-  getRight() {
-    return this.left + this.width;
+    this.bottom = this.top + this.height;
+    this.right = this.left + this.width;
   }
 
   isOverlappingWithSiblings() {
-    if (this.parentInfo.childrenInfos.length === 0) return;
+    const noSiblings = this.parentInfo.childrenInfos.length === 0;
+
+    if (noSiblings) return;
 
     return this.parentInfo.childrenInfos.some(
       (siblingInfo) => this.checkOverlap(this, siblingInfo),
@@ -57,10 +61,10 @@ export default class VillageInfo {
 
   checkOverlap(villageInfo1, villageInfo2) {
     return !(
-      villageInfo1.top > villageInfo2.getBottom() ||
-      villageInfo1.left > villageInfo2.getRight() ||
-      villageInfo1.getRight() < villageInfo2.left ||
-      villageInfo1.getBottom() < villageInfo2.top
+      villageInfo1.top > villageInfo2.bottom ||
+      villageInfo1.left > villageInfo2.right ||
+      villageInfo1.right < villageInfo2.left ||
+      villageInfo1.bottom < villageInfo2.top
     );
   }
 
@@ -81,10 +85,10 @@ export default class VillageInfo {
 
     Object.assign(el.style, {
       position: "absolute",
-      width: this.width + "px",
-      height: this.height + "px",
-      top: this.top + "px",
-      left: this.left + "px",
+      width: `${this.width}px`,
+      height: `${this.height}px`,
+      top: `${this.top}px`,
+      left: `${this.left}px`,
     });
 
     innerWrapper.append(name, mailBox ?? "");

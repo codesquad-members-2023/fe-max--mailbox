@@ -7,14 +7,6 @@ const canvasInfo = {
   childrenInfos: [],
   width: canvasRect.width,
   height: canvasRect.height,
-  top: 0,
-  left: 0,
-  getBottom() {
-    return this.top + this.height;
-  },
-  getRight() {
-    return this.left + this.width;
-  },
 };
 const createdVillageNames = new Set();
 
@@ -58,23 +50,12 @@ function createVillageInfos() {
       parentInfo
     );
 
-    if (!villageInfo.isValidSize()) break;
+    if (!villageInfo.isValidSize()) continue;
 
-    if (checkOverlapWithSiblings(villageInfo)) {
+    if (!villageInfo.isOverlappingWithSiblings()) {
       villageNameCode++;
       parentVillageInfos.push(villageInfo);
       parentInfo.childrenInfos.push(villageInfo);
     }
   }
-}
-
-function checkOverlapWithSiblings(villageInfo) {
-  for (let i = 0; i < 60; i++) {
-    if (villageInfo.isOverlappingWithSiblings()) {
-      villageInfo.generateSizeAndPosition();
-    } else {
-      return true;
-    }
-  }
-  return false;
 }
