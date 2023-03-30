@@ -3,7 +3,7 @@ button.addEventListener('click', () => {
 	console.log('clicked!');
 });
 
-function myQuerySelector(selector) {
+export function myQuerySelector(selector) {
 	const selectorName = selector.substr(1);
 	if (selector.at(0) === '#') {
 		return findNodeById(selectorName);
@@ -14,7 +14,7 @@ function myQuerySelector(selector) {
 	}
 }
 
-function myQuerySelectorAll(selector) {
+export function myQuerySelectorAll(selector) {
 	const selectorName = selector.substr(1);
 	if (selector.at(0) === '#') {
 		return [findNodeById(selectorName)];
