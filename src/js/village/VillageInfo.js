@@ -65,17 +65,19 @@ export default class VillageInfo {
   }
 
   isValidSize() {
-    return this.width > 20 && this.height > 20;
+    return this.width > 30 && this.height > 20;
   }
 
   createEl() {
     const el = document.createElement("div");
-    const span = document.createElement("span");
+    const name = document.createElement("span");
     const innerWrapper = document.createElement("div");
+    const mailBox = this.createMailBox();
 
     el.className = "village";
     innerWrapper.className = "inner-wrapper";
-    span.textContent = this.name;
+    name.className = "village-name";
+    name.textContent = this.name;
 
     Object.assign(el.style, {
       position: "absolute",
@@ -85,8 +87,16 @@ export default class VillageInfo {
       left: this.left + "px",
     });
 
-    innerWrapper.append(span);
+    innerWrapper.append(name, mailBox ?? "");
     el.append(innerWrapper);
     return el;
+  }
+
+  createMailBox() {
+    if (Math.random() < 0.5) return null;
+    const img = document.createElement("div");
+    img.className = "mailbox";
+
+    return img;
   }
 }

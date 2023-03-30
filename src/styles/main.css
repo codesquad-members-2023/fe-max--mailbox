@@ -54,5 +54,15 @@ section {
 }
 
 .village-name {
+  font-weight: bold;
+}
+
+.mailbox {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
   position: absolute;
+  top: 2px;
+  background: url("/src/assets/mailbox.png") center no-repeat;
+  background-size: contain;
 }
