@@ -22,7 +22,8 @@
 - [ ] Mission 2
   - [ ] Button event
     - [ ] Find all villages with a mailbox
-      - [ ] Create and use a custom `querySelector`
+      - [x] Create and use a custom `querySelector`
+      - [ ] Create and use a custom `querySelectorAll`
     - [ ] Render village names in text view section
     - [ ] Render village names in order of ascending size of mailbox
       - [ ] Implement and use a sorting algorithm
