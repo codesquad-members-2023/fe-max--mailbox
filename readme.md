@@ -8,7 +8,7 @@
 
 ## Features
 
-- [ ] Mission 1
+- [x] Mission 1
   - [x] Draw villages on screen
     - [x] Choose random number of villages
     - [x] Create village
@@ -17,9 +17,8 @@
     - [x] Render village
       - [x] Overlap check(10 times)
       - [x] Render or skip based on overlap check
-  - [ ] Draw mailboxes on screen
-    - [ ] Choose random number of mailboxes
-    - [ ] Choose random size
+  - [x] Draw mailboxes on screen
+    - [x] Choose random number of mailboxes
 - [ ] Mission 2
 
 ## Keywords
