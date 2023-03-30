@@ -20,6 +20,14 @@
   - [x] Draw mailboxes on screen
     - [x] Choose random number of mailboxes
 - [ ] Mission 2
+  - [ ] Button event
+    - [ ] Find all villages with a mailbox
+      - [ ] Create and use a custom `querySelector`
+    - [ ] Render village names in text view section
+    - [ ] Render village names in order of ascending size of mailbox
+      - [ ] Implement and use a sorting algorithm
+    - [ ] After 2 seconds, change the village border color to red
+      - [ ] Use `setTimeout` and `Promise` pattern to handle that delay
 
 ## Keywords
 
