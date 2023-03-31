@@ -21,10 +21,10 @@
     - [x] Choose random number of mailboxes
 - [ ] Mission 2
   - [ ] Button event
-    - [ ] Find all villages with a mailbox
+    - [x] Find all villages with a mailbox
       - [x] Create and use a custom `querySelector`
-      - [ ] Create and use a custom `querySelectorAll`
-    - [ ] Render village names in text view section
+      - [x] Create and use a custom `querySelectorAll`
+    - [x] Render village names in text view section
     - [ ] Render village names in order of ascending size of mailbox
       - [ ] Implement and use a sorting algorithm
     - [ ] After 2 seconds, change the village border color to red
