@@ -1,8 +1,14 @@
 import { Village } from './village.js';
+import { makeMailbox } from './mailbox.js';
 import { myQuerySelector, myQuerySelectorAll } from './domAPI.js';
 
 function app() {
-	window.addEventListener('load', makeVillage);
+	window.addEventListener('load', init);
+}
+
+function init() {
+	makeVillage();
+	makeMailbox();
 }
 
 function makeVillage() {
