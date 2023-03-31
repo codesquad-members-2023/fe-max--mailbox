@@ -84,6 +84,7 @@ export default class VillageInfo {
     name.textContent = this.name;
 
     el.dataset.name = this.name;
+    el.dataset.size = this.width * this.height;
     Object.assign(el.style, {
       position: "absolute",
       width: `${this.width}px`,
