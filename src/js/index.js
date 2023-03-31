@@ -42,68 +42,61 @@ function checkInside(parent, child) {
     return childX < parentX && childY < parentY;
 }
 
+function isOverlapWithPreTowns(towns, town) {
+    return towns.some((prevTown) => isOverlap(prevTown, town));
+}
+
 function createNestedTown() {
     const townMap = document.querySelector(".town-map");
     let parent = townMap;
-    const maxDepth = 1;
+    const maxDepth = 10;
     let currentDepth = 1;
     while (currentDepth <= maxDepth) {
         const newTown = new Town(parent);
-
         const towns = document.querySelectorAll(".town-map > div");
 
         if (towns.length) {
-            for (let town of towns) {
-                isOverlap(town, newTown);
-                // console.log("hi")
-                console.log(isOverlap(town, newTown));
+            if (isOverlapWithPreTowns(towns, newTown)) {
+                currentDepth++;
+            } else {
+                const isInside = checkInside(parent, newTown);
+                if (isInside) {
+                    newTown.setChildStyle(parent);
+                    newTown.appendChildTown(parent);
+                    parent = newTown.child;
+                    Town.townCount++;
+                    currentDepth++;
+                } else {
+                    currentDepth++;
+                }
+            }
+        } else {
+            const isInside = checkInside(parent, newTown);
+            if (isInside) {
+                newTown.setChildStyle(parent);
+                newTown.appendChildTown(parent);
+                parent = newTown.child;
+                Town.townCount++;
+                currentDepth++;
+            } else {
+                currentDepth++;
             }
         }
-
-        const isInside = checkInside(parent, newTown);
-        if (isInside) {
-            newTown.setChildStyle(parent);
-            newTown.appendChildTown(parent);
-            parent = newTown.child;
-            Town.townCount++;
-            currentDepth++;
-        } else {
-            currentDepth++;
-        }
-        // const towns = document.querySelectorAll(".town-map > div");
-
-        // if (towns.length) {
-        //     for (let town of towns) {
-        //     }
-        // } else {
-        // const isInside = checkInside(parent, newTown);
-        // if (isInside) {
-        //     newTown.setChildStyle(parent);
-        //     newTown.appendChildTown(parent);
-        //     parent = newTown.child;
-        //     Town.townCount++;
-        //     currentDepth++;
-        // } else {
-        //     currentDepth++;
-        // }
-        // }
     }
 }
 
 function isOverlap(prevTown, currentTown) {
     const prevTownInfo = getElementCoordinate(prevTown);
     const currentTownInfo = getObjectCoordinate(currentTown);
-    console.log(prevTownInfo);
-    console.log(currentTownInfo);
     if (
-        (prevTownInfo.left < currentTownInfo.left &&
-        prevTownInfo.right > currentTownInfo.right) ||
-        (prevTownInfo.top < currentTownInfo.top &&
-        prevTownInfo.bottom > currentTownInfo.bottom)
+        prevTownInfo.right < currentTownInfo.left ||
+        currentTownInfo.right < prevTownInfo.left ||
+        prevTownInfo.bottom < currentTownInfo.top ||
+        currentTownInfo.bottom < prevTownInfo.top
     ) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -126,23 +119,14 @@ function getObjectCoordinate(town) {
 function fn() {
     createNestedTown();
     createNestedTown();
+    createNestedTown();
+    createNestedTown();
+    createNestedTown();
 }
 
 fn();
 
-// for (let town of towns) {
-//     const left = town.offsetLeft;
-//     const right = town.offsetLeft + town.offsetWidth;
-//     const top = town.offsetTop;
-//     const bottom = town.offsetTop + town.offsetHeight;
-//     //if(!(width > left && width < right) && !(height > top && height < bottom)){
-//         createNestedTown
-//     }
-//     console.log(town.offsetWidth, town.offsetHeight);
-//     //
-// }
-
-// outer의 width 및 heigth가 inner의 최소 width 및 height보다 작으면 inner가 생성되지 않게 해야 함
+// outer의 width 및 height가 inner의 최소 width 및 height보다 작으면 inner가 생성되지 않게 해야 함
 // Math.round(Math.random())을 사용해 0 또는 1의 블리언 데이터로 우체통이 생성되거나 안되게 할까?
 
 // 작게 나눠서 구현하기
