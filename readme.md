@@ -19,23 +19,30 @@
       - [x] Render or skip based on overlap check
   - [x] Draw mailboxes on screen
     - [x] Choose random number of mailboxes
-- [ ] Mission 2
-  - [ ] Button event
+- [x] Mission 2
+  - [x] Button event
     - [x] Find all villages with a mailbox
       - [x] Create and use a custom `querySelector`
       - [x] Create and use a custom `querySelectorAll`
     - [x] Render village names in text view section
     - [x] Render village names in order of ascending size of mailbox
       - [x] Implement and use a sorting algorithm
-    - [ ] After 2 seconds, change the village border color to red
-      - [ ] Use `setTimeout` and `Promise` pattern to handle that delay
+    - [x] After 2 seconds, change the village border color to red
+      - [x] Use `setTimeout` and `Promise` pattern to handle that delay
 
 ## Keywords
 
 - `Element.getBoundingClientRect()`
 - `document.elementFromPoint()`
 - `dataset` vs `getAttribute()`/`setAttribute()`
+  - Decided to use `dataset` instead of `getAttribute`/`setAttribute` since it is the standard.
+  - Also, there is no need to include the `data-*` prefix.
 - Merge sort vs Radix sort
+  - Decided to use Merge sort based on performance.
+    - Merge sort TC - O(n log n)
+      - Our case: O(8 * log8)
+    - Radix sort TC - O(n * k)
+      - Our case: O(8 * 6)
 
 ## Development Process
 
