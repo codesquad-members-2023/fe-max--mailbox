@@ -1,3 +1,5 @@
+import { initClickEvent } from "./buttonClickHandler.js";
+
 class Town {
     static townCount = 0;
     constructor(parent) {
@@ -26,6 +28,7 @@ class Town {
         this.child.style.top = this.top + "px";
         this.child.style.width = this.width + "px";
         this.child.style.height = this.height + "px";
+        this.child.classList.add("town");
         this.child.className = "town";
     }
 
@@ -54,9 +57,14 @@ function createNestedTown() {
     while (currentDepth <= maxDepth) {
         const newTown = new Town(parent);
         const towns = document.querySelectorAll(".town-map > div");
+        const prevTowns = [];
+
+        for (let town of towns) {
+            prevTowns.push(town);
+        }
 
         if (towns.length) {
-            if (isOverlapWithPreTowns(towns, newTown)) {
+            if (isOverlapWithPreTowns(prevTowns, newTown)) {
                 currentDepth++;
             } else {
                 const isInside = checkInside(parent, newTown);
@@ -116,15 +124,30 @@ function getObjectCoordinate(town) {
     return { left, right, top, bottom };
 }
 
+function mailbox(createdTowns) {
+    for (const town of createdTowns) {
+        if(Math.round(Math.random())) {
+            town.classList.add('mail-box');
+            const townWidth = town.offsetWidth;
+            const townHeight = town.offsetHeight;
+            town.id = townWidth * townHeight;
+        }
+    }
+}
+
 function fn() {
     createNestedTown();
     createNestedTown();
     createNestedTown();
     createNestedTown();
     createNestedTown();
+    const createdTowns = document.querySelectorAll(".town")
+    mailbox(createdTowns);
 }
 
 fn();
+
+initClickEvent();
 
 // outer의 width 및 height가 inner의 최소 width 및 height보다 작으면 inner가 생성되지 않게 해야 함
 // Math.round(Math.random())을 사용해 0 또는 1의 블리언 데이터로 우체통이 생성되거나 안되게 할까?
