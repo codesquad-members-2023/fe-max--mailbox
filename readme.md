@@ -25,8 +25,8 @@
       - [x] Create and use a custom `querySelector`
       - [x] Create and use a custom `querySelectorAll`
     - [x] Render village names in text view section
-    - [ ] Render village names in order of ascending size of mailbox
-      - [ ] Implement and use a sorting algorithm
+    - [x] Render village names in order of ascending size of mailbox
+      - [x] Implement and use a sorting algorithm
     - [ ] After 2 seconds, change the village border color to red
       - [ ] Use `setTimeout` and `Promise` pattern to handle that delay
 
@@ -34,6 +34,8 @@
 
 - `Element.getBoundingClientRect()`
 - `document.elementFromPoint()`
+- `dataset` vs `getAttribute()`/`setAttribute()`
+- Merge sort vs Radix sort
 
 ## Development Process
 
