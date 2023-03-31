@@ -33,9 +33,14 @@ main {
 }
 
 .text-area {
-  width: 300px;
+  width: 400px;
   margin-top: 10px;
 }
+
+.result-text-area p {
+  font-size: 36px;
+}
+
 .mailbox-btn {
   text-align: center;
   background-color: red;

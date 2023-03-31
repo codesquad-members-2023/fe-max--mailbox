@@ -1,9 +1,11 @@
 import { Village } from './village.js';
-import { makeMailbox } from './mailbox.js';
-import { myQuerySelector, myQuerySelectorAll } from './domAPI.js';
+import { makeMailbox, findMailbox } from './mailbox.js';
+import { myQuerySelector } from './domAPI.js';
 
 function app() {
 	window.addEventListener('load', init);
+	const findMailboxBtn = myQuerySelector('.mailbox-btn');
+	findMailboxBtn.addEventListener('click', findMailbox);
 }
 
 function init() {
