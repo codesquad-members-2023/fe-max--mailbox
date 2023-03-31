@@ -1,5 +1,5 @@
-import { mergeSortMailboxTown } from '../utils/mergeSortMailboxNodes.js';
 import { domAPI } from '../utils/domAPI.js';
+import { mergeSortMailboxTown } from '../utils/mergeSortMailboxTown.js';
 import { makeMailboxView } from '../view/makeMailboxView.js';
 
 export const buttonClickEvent = () => {
@@ -24,7 +24,7 @@ const makeTownInfo = (mailboxTownNodes) => {
   const makeTemplate = (townNode) => {
     return {
       name: townNode.dataset.name,
-      mailboxSize: domAPI.querySelector('.mailbox', townNode).dataset.size,
+      mailboxSize: Number(domAPI.querySelector('.mailbox', townNode).dataset.size),
     };
   };
   return mailboxTownNodes.map(makeTemplate);

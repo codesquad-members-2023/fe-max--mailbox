@@ -26,7 +26,7 @@ const mergeMailboxTown = (townListA, townListB) => {
   };
 
   while (pointerA < townListA.length && pointerB < townListB.length) {
-    if (Number(townListB[pointerB].mailboxSize) > Number(townListA[pointerA].mailboxSize)) {
+    if (townListB[pointerB].mailboxSize > townListA[pointerA].mailboxSize) {
       insertNodeB();
     } else {
       insertNodeA();
@@ -43,3 +43,13 @@ const mergeMailboxTown = (townListA, townListB) => {
 
   return result;
 };
+
+const testCase = [
+  { name: 'A', mailboxSize: '63' },
+  { name: 'B', mailboxSize: '10' },
+  { name: 'C', mailboxSize: '31' },
+  { name: 'F', mailboxSize: '29' },
+  { name: 'G', mailboxSize: '8' },
+];
+
+mergeSortMailboxTown(testCase);
