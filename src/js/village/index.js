@@ -9,19 +9,16 @@ const villageMapInfo = {
   width: villageMapRect.width,
   height: villageMapRect.height,
 };
-const createdVillageNames = new Set();
 
 export function renderVillageEls() {
   createVillageInfos();
 
   villageMapInfo.childrenInfos.forEach((childInfo) => {
-    if (createdVillageNames.has(childInfo.name)) return;
     villageMap.append(createVillageEl(childInfo));
   });
 }
 
 function createVillageEl(villageInfo) {
-  createdVillageNames.add(villageInfo.name);
   const villageEl = villageInfo.createEl();
 
   customQuerySelector(".inner-wrapper", villageEl).append(
