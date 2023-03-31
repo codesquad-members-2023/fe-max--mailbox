@@ -3,18 +3,27 @@ import {
   customQuerySelectorAll,
 } from "../utils/customQuerySelector.js";
 import { customMergeSort } from "../utils/customMergeSort.js";
+import { delayedCallback } from "../utils/index.js";
 
 const checkButton = customQuerySelector("#check-btn");
 
-checkButton.addEventListener("click", () => {
-  const mailboxVillagesData = findMailboxVillagesData();
+checkButton.addEventListener("click", async () => {
+  const mailboxVillageEls = findMailboxVillageEls();
+  const mailboxVillagesData = mailboxVillageEls.map((village) => {
+    return { name: village.dataset.name, size: village.dataset.size };
+  });
   const villageNames = mailboxVillagesData.map((village) => village.name);
 
-  renderMailBoxVillageNames(villageNames);
+  renderMailboxVillageNames(villageNames);
   renderSortedVillageNamesBySize(mailboxVillagesData);
+
+  await delayedCallback(
+    () => highlightMailboxVillages(mailboxVillageEls),
+    2000
+  );
 });
 
-function renderMailBoxVillageNames(villageNames) {
+function renderMailboxVillageNames(villageNames) {
   const mailboxVillagesEl = customQuerySelector("#mailbox-villages");
 
   mailboxVillagesEl.innerHTML = `
@@ -22,11 +31,10 @@ function renderMailBoxVillageNames(villageNames) {
   `;
 }
 
-function findMailboxVillagesData() {
+function findMailboxVillageEls() {
   const mailboxes = customQuerySelectorAll(".mailbox");
   return mailboxes.map((mailbox) => {
-    const { name, size } = mailbox.parentElement.parentElement.dataset;
-    return { name, size };
+    return mailbox.parentElement.parentElement;
   });
 }
 
@@ -42,4 +50,10 @@ function renderSortedVillageNamesBySize(mailboxVillagesData) {
     ${sortedVillageNames.join(", ")}
     순입니다.
   `;
+}
+
+function highlightMailboxVillages(mailboxVillages) {
+  mailboxVillages.forEach((mailboxVillage) => {
+    mailboxVillage.classList.add("highlight");
+  });
 }

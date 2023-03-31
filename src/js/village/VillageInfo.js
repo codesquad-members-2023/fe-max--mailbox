@@ -76,7 +76,7 @@ export default class VillageInfo {
     const el = document.createElement("div");
     const name = document.createElement("span");
     const innerWrapper = document.createElement("div");
-    const mailBox = this.createMailBox();
+    const mailBox = this.createMailbox();
 
     el.className = "village";
     innerWrapper.className = "inner-wrapper";
@@ -98,7 +98,7 @@ export default class VillageInfo {
     return el;
   }
 
-  createMailBox() {
+  createMailbox() {
     if (Math.random() < 0.5) return null;
     const img = document.createElement("div");
     img.className = "mailbox";
