@@ -17,8 +17,7 @@ main {
   flex-wrap: wrap;
 }
 
-h1 {
-  width: 1500px;
+.title {
   text-align: center;
 }
 

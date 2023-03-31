@@ -1,4 +1,4 @@
-import { makeRandomNumber } from './utils.js';
+import { makeRandomNumber } from '../utils/utils.js';
 import { makeVillage } from './makeVillage.js';
 
 export class Town {

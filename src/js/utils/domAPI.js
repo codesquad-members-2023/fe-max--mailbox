@@ -1,4 +1,3 @@
-//DFSPreOrder
 export const domAPI = {
   htmlNode: document.firstElementChild,
 
