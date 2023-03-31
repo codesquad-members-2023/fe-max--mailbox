@@ -13,16 +13,21 @@
         <h1 class="title">📮 빨간 우체통 마을 찾기</h1>
     </header>
     <main class="main">
-        <section class="map-section">
+        <section id="hi" class="map-section">
             <div class="map">
             </div>
         </section>
         <section class="info-section">
-            <button class="search-btn">우체통 찾기</button>
-            <span class="village-info">총 5개의 마을입니다</span>
-            <span class="mailbox-info">우체통의 크기입니다</span>
+            <div class="btn-box">
+                <button class="btn search-btn">우체통 찾기</button>
+                <button class="btn refresh-btn">새로고침</button>
+            </div>
+            <div class="result-info">
+                <span class="village-list"></span>
+                <span class="mailbox-info"></span>
+            </div>
         </section>
     </main>
-    <script src="./src/js/index.js"></script>
+    <script type="module" src="./src/js/app.js"></script>
 </body>
 </html>
