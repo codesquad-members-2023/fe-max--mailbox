@@ -4,23 +4,23 @@ import { customQuerySelectorAll } from "../utils/customQuerySelectorAll.js";
 const checkButton = customQuerySelector("#check-btn");
 
 checkButton.addEventListener("click", () => {
-  renderVillageNamesContainingMailBox();
+  renderMailBoxVillageNames();
   // 우체통을 크기순으로 렌더링
 });
 
-function renderVillageNamesContainingMailBox() {
-  const villageNames = findVillagesContainingMailBox();
+function renderMailBoxVillageNames() {
+  const villageNames = findMailboxVillageNames();
 
-  const villagesName = customQuerySelector("#villages-name");
-  const villagesNumber = customQuerySelector("#villages-number");
+  const mailboxVillages = customQuerySelector("#mailbox-villages");
 
-  villagesName.textContent = `${villageNames.join()}`;
-  villagesNumber.textContent = `총 ${villageNames.length}개의 마을입니다.`;
+  mailboxVillages.innerHTML = `${villageNames.join()} <br/> 총 ${
+    villageNames.length
+  }개의 마을입니다.`;
 }
 
-function findVillagesContainingMailBox() {
+function findMailboxVillageNames() {
   const mailboxes = customQuerySelectorAll(".mailbox");
-  return mailboxes.map((mailbox) =>
-    mailbox.parentElement.parentElement.getAttribute("data-name")
+  return mailboxes.map(
+    (mailbox) => mailbox.parentElement.parentElement.dataset.name
   );
 }

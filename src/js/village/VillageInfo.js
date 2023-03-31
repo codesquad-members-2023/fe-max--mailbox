@@ -83,7 +83,7 @@ export default class VillageInfo {
     name.className = "village-name";
     name.textContent = this.name;
 
-    el.setAttribute("data-name", this.name);
+    el.dataset.name = this.name;
     Object.assign(el.style, {
       position: "absolute",
       width: `${this.width}px`,
