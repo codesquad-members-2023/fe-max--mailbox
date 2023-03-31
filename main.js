@@ -19,7 +19,7 @@ const searchMailboxTown = async () => {
   const unSortedTownInfo = mailboxTowns.map((townNode) => {
     return {
       name: townNode.dataset.name,
-      mailboxSize: townNode.firstChild.dataset.size,
+      mailboxSize: domAPI.querySelector('.mailbox', townNode).dataset.size,
     };
   });
 
@@ -49,17 +49,15 @@ const makeInfoView = (unSortedTownInfo, sortedTownInfo) => {
 const unSortedView = (unSortedTownInfo) => {
   const names = unSortedTownInfo.map((item) => item.name);
   const template = `
-    <p>${names.join(', ')} 총 ${names.length}개의 마을입니다.</p>
+    <p>${names.join(', ')}총 ${names.length}개의 마을입니다.</p>
   `;
   return template;
 };
 
 const sortedView = (sortedTownInfo) => {
-  const names = sortedTownInfo.map((item) => item.name);
-  const sizes = sortedTownInfo.map((item) => item.mailboxSize);
-  const template = `
-  <p>우체통의 크기는 ${names.join(', ')}순입니다. 우체통 크기 순서: ${sizes.join(', ')}</p>
-  `;
+  const text = sortedTownInfo.map((item) => ` ${item.name} : ${item.mailboxSize}`);
+  const template = `<p>우체통의 크기는<br>${text}<br>순입니다.</p>`;
+  console.log(text);
 
   return template;
 };

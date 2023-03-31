@@ -14,6 +14,11 @@ const createTownNode = (town) => {
   townNode.style.top = `${pointY}px`;
   townNode.style.left = `${pointX}px`;
 
+  const nameDiv = document.createElement('div');
+  nameDiv.textContent = name;
+  nameDiv.classList.add('name');
+  townNode.append(nameDiv);
+
   if (hasMailbox) {
     const mailbox = document.createElement('span');
     mailbox.classList.add('mailbox');

@@ -3,8 +3,13 @@
 }
 
 button {
+  width: 100%;
   padding: 30px 30px;
   font-size: 30px;
+  color: #fff;
+  background-color: #ff3300;
+  border: none;
+  border-radius: 10px;
 }
 
 main {
@@ -12,10 +17,15 @@ main {
   flex-wrap: wrap;
 }
 
+h1 {
+  width: 1500px;
+  text-align: center;
+}
+
 .info {
-  width: 300px;
+  width: 500px;
   font-size: 20px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .root {
@@ -38,5 +48,13 @@ main {
 }
 
 p {
-  text-size: 50px;
+  font-size: 45px;
+}
+
+.name {
+  position: relative;
+  top: -25px;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: bold;
 }
