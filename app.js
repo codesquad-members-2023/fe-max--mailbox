@@ -1,88 +1,61 @@
-const button = myQuerySelector('button');
-button.addEventListener('click', () => {
-	console.log('clicked!');
-});
+import { Village } from './village.js';
+import { myQuerySelector, myQuerySelectorAll } from './domAPI.js';
 
-export function myQuerySelector(selector) {
-	const selectorName = selector.substr(1);
-	if (selector.at(0) === '#') {
-		return findNodeById(selectorName);
-	} else if (selector.at(0) === '.') {
-		return findNodeByClassName(selectorName);
-	} else {
-		return findNodeByTagName(selector);
+function app() {
+	window.addEventListener('load', makeVillage);
+}
+
+function makeVillage() {
+	const maxVillageCount = Math.floor(Math.random() * 3) + 3;
+	let villageCount = 0;
+	while (villageCount < maxVillageCount) {
+		const village = new Village('city');
+		village.setRandomLocate();
+		drawVillage(village);
+		villageCount++;
+		makeVillageInVillage(village.id);
 	}
 }
 
-export function myQuerySelectorAll(selector) {
-	const selectorName = selector.substr(1);
-	if (selector.at(0) === '#') {
-		return [findNodeById(selectorName)];
-	} else if (selector.at(0) === '.') {
-		return findNodeByClassNameAll(selectorName);
-	} else {
-		return findNodeByTagNameAll(selector);
+function makeVillageInVillage(villageId) {
+	if (!myQuerySelector(`#${villageId}`)) {
+		return;
 	}
-}
-
-function walkPreOrder(node, nodes = []) {
-	if (!node) return nodes;
-
-	nodes.push(node);
-	for (const child of node.children) {
-		walkPreOrder(child, nodes);
-	}
-	return nodes;
-}
-
-function findNodeById(nodeId) {
-	const DOMTree = walkPreOrder(document.body);
-	for (const node of DOMTree) {
-		if (node.id === nodeId) {
-			return node;
+	const maxCount = Math.floor(Math.random() * 3);
+	let count = 0;
+	while (count < maxCount) {
+		const village = new Village(villageId);
+		count++;
+		if (village.width < 50 || village.height < 50) {
+			continue;
 		}
+		village.setRandomLocate();
+		drawVillage(village);
+		makeVillageInVillageInVillage(village.id);
 	}
-	return null;
 }
 
-function findNodeByTagName(tag) {
-	const DOMTree = walkPreOrder(document.body);
-	for (const node of DOMTree) {
-		if (node.tagName === tag.toUpperCase()) {
-			return node;
-		}
+function makeVillageInVillageInVillage(villageId) {
+	if (!myQuerySelector(`#${villageId}`)) {
+		return;
 	}
-	return null;
+	const maxCount1 = Math.floor(Math.random() * 3);
+	let count1 = 0;
+	while (count1 < maxCount1) {
+		const village = new Village(villageId);
+		count1++;
+		if (village.width < 50 || village.height < 50) {
+			continue;
+		}
+		village.setRandomLocate();
+		drawVillage(village);
+	}
 }
 
-function findNodeByTagNameAll(tag) {
-	const DOMTree = walkPreOrder(document.body);
-	const nodes = [];
-	for (const node of DOMTree) {
-		if (node.tagName === tag.toUpperCase()) {
-			nodes.push(node);
-		}
-	}
-	return nodes;
+function drawVillage({ id, width, height, left, top, parentNode }) {
+	// 조건 확인해서 안 맞으면 다시 크기나 위치를 정해서 그리도록
+	const villageTemplate = `<div class='village' id='${id}' style='width:${width}px; height:${height}px; top:${top}px; left:${left}px;'>${id}</div>`;
+	parentNode.insertAdjacentHTML('beforeend', villageTemplate);
 }
 
-function findNodeByClassName(className) {
-	const DOMTree = walkPreOrder(document.body);
-	for (const node of DOMTree) {
-		if (node.classList.contains(className)) {
-			return node;
-		}
-	}
-	return null;
-}
-
-function findNodeByClassNameAll(className) {
-	const DOMTree = walkPreOrder(document.body);
-	const nodes = [];
-	for (const node of DOMTree) {
-		if (node.classList.contains(className)) {
-			nodes.push(node);
-		}
-	}
-	return nodes;
-}
+app();
