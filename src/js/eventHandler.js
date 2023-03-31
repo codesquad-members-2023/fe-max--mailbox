@@ -6,6 +6,7 @@ const onclickBtn = (btn, fun) => {
 }
 
 const renderSearchResult = () => {
+    delay(2000).then(changeBorderColorOfVillage);
     searchMailboxes();
     sortMailboxes();
 }
@@ -48,6 +49,18 @@ const searchParentNodeId = (node) => {
     return node.parentNode.id;
 }
 
+const changeBorderColorOfVillage = () => {
+    const domSelector = new DomSelector();
+    const mailboxes = domSelector.selectClassAll('mailbox');
+    const villageWithMailbox = [];
+    mailboxes.forEach(mailbox => {
+        villageWithMailbox.push(mailbox.parentNode);
+    });
+    villageWithMailbox.forEach(village => village.style.borderColor = 'red');
+}
 
+const delay = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 export { onclickBtn, renderSearchResult, refreshPage };
