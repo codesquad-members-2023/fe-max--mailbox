@@ -45,10 +45,21 @@ function checkInside(parent, child) {
 function createNestedTown() {
     const townMap = document.querySelector(".town-map");
     let parent = townMap;
-    const maxDepth = 4;
+    const maxDepth = 1;
     let currentDepth = 1;
     while (currentDepth <= maxDepth) {
         const newTown = new Town(parent);
+
+        const towns = document.querySelectorAll(".town-map > div");
+
+        if (towns.length) {
+            for (let town of towns) {
+                isOverlap(town, newTown);
+                // console.log("hi")
+                console.log(isOverlap(town, newTown));
+            }
+        }
+
         const isInside = checkInside(parent, newTown);
         if (isInside) {
             newTown.setChildStyle(parent);
@@ -59,32 +70,77 @@ function createNestedTown() {
         } else {
             currentDepth++;
         }
+        // const towns = document.querySelectorAll(".town-map > div");
+
+        // if (towns.length) {
+        //     for (let town of towns) {
+        //     }
+        // } else {
+        // const isInside = checkInside(parent, newTown);
+        // if (isInside) {
+        //     newTown.setChildStyle(parent);
+        //     newTown.appendChildTown(parent);
+        //     parent = newTown.child;
+        //     Town.townCount++;
+        //     currentDepth++;
+        // } else {
+        //     currentDepth++;
+        // }
+        // }
     }
 }
 
-// function fn() {
-//     createNestedTown();
-//     const townsInfo = [];
-//     const towns = document.querySelectorAll(".town-map > div");
-//     for (let town of towns) {
-//         const left = town.offsetLeft;
-//         const right = town.offsetLeft + town.offsetWidth;
-//         const top = town.offsetTop;
-//         const bottom = town.offsetTop + town.offsetHeight;
-//         //if(!(width > left && width < right) && !(height > top && height < bottom)){
-//             createNestedTown
-//         }
-//         console.log(town.offsetWidth, town.offsetHeight);
-//         //
+function isOverlap(prevTown, currentTown) {
+    const prevTownInfo = getElementCoordinate(prevTown);
+    const currentTownInfo = getObjectCoordinate(currentTown);
+    console.log(prevTownInfo);
+    console.log(currentTownInfo);
+    if (
+        (prevTownInfo.left < currentTownInfo.left &&
+        prevTownInfo.right > currentTownInfo.right) ||
+        (prevTownInfo.top < currentTownInfo.top &&
+        prevTownInfo.bottom > currentTownInfo.bottom)
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getElementCoordinate(town) {
+    const left = town.offsetLeft;
+    const right = town.offsetLeft + town.offsetWidth;
+    const top = town.offsetTop;
+    const bottom = town.offsetTop + town.offsetHeight;
+    return { left, right, top, bottom };
+}
+
+function getObjectCoordinate(town) {
+    const left = town.left;
+    const right = town.left + town.width;
+    const top = town.top;
+    const bottom = town.top + town.height;
+    return { left, right, top, bottom };
+}
+
+function fn() {
+    createNestedTown();
+    createNestedTown();
+}
+
+fn();
+
+// for (let town of towns) {
+//     const left = town.offsetLeft;
+//     const right = town.offsetLeft + town.offsetWidth;
+//     const top = town.offsetTop;
+//     const bottom = town.offsetTop + town.offsetHeight;
+//     //if(!(width > left && width < right) && !(height > top && height < bottom)){
+//         createNestedTown
 //     }
+//     console.log(town.offsetWidth, town.offsetHeight);
+//     //
 // }
-
-// fn();
-
-// createLoopTown();
-// createLoopTown();
-
-// console.log(townMap.getBoundingClientRect());
 
 // outer의 width 및 heigth가 inner의 최소 width 및 height보다 작으면 inner가 생성되지 않게 해야 함
 // Math.round(Math.random())을 사용해 0 또는 1의 블리언 데이터로 우체통이 생성되거나 안되게 할까?
