@@ -2,7 +2,7 @@ import { makeRandomNumber } from '../utils/utils.js';
 import { makeVillage } from './makeVillage.js';
 
 export class Town {
-  static nameIndex = 65;
+  static nameASCII = 65;
   static mailboxSizeStorage = new Map();
 
   constructor(parentWidth, parentHeight) {
@@ -19,7 +19,7 @@ export class Town {
   }
 
   setTown() {
-    this.name = String.fromCharCode(Town.nameIndex++);
+    this.name = String.fromCharCode(Town.nameASCII++);
     this.makeChildren();
     this.setMailboxSize();
   }

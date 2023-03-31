@@ -1,6 +1,6 @@
 import { Town } from './Town.js';
 
-export const makeVillage = (parentWidth = rootWidth, parentHeight = rootHeight) => {
+export const makeVillage = (parentWidth, parentHeight) => {
   const village = [];
   const MAX_TOWN_COUNT = 10;
   let trialCount = 0;

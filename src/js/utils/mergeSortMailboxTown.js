@@ -43,13 +43,3 @@ const mergeMailboxTown = (townListA, townListB) => {
 
   return result;
 };
-
-const testCase = [
-  { name: 'A', mailboxSize: '63' },
-  { name: 'B', mailboxSize: '10' },
-  { name: 'C', mailboxSize: '31' },
-  { name: 'F', mailboxSize: '29' },
-  { name: 'G', mailboxSize: '8' },
-];
-
-mergeSortMailboxTown(testCase);
