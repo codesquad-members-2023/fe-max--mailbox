@@ -1,14 +1,24 @@
-export function customQuerySelector(selector) {
-  const [selectorType, selectorName] = parseSelector(selector);
-  const isTag = selectorType === "tag";
-  const startEl = document.body;
+export const customQuerySelectorAll = querySelectorFactory(true);
+export const customQuerySelector = querySelectorFactory(false);
 
-  return isTag
-    ? findByTagName(startEl, selectorName.toUpperCase())
-    : findByTypeAndName(startEl, selectorType, selectorName);
+function querySelectorFactory(isAll) {
+  return function (selector, startEl = document.body) {
+    const [selectorType, selectorName] = parseSelector(selector);
+    const isTag = selectorType === "tag";
+
+    if (isTag) {
+      return isAll
+        ? findAllByTagName(startEl, selectorName.toUpperCase())
+        : findByTagName(startEl, selectorName.toUpperCase());
+    } else {
+      return isAll
+        ? findAllByTypeAndName(startEl, selectorType, selectorName)
+        : findByTypeAndName(startEl, selectorType, selectorName);
+    }
+  };
 }
 
-export function parseSelector(selector) {
+function parseSelector(selector) {
   const type = getSelectorType(selector);
   const name = type === "tag" ? selector : selector.slice(1);
   return [type, name];
@@ -24,6 +34,34 @@ function getSelectorType(selector) {
     default:
       return "tag";
   }
+}
+
+function findAllByTagName(currEl, targetName) {
+  const els = [];
+
+  if (currEl.tagName === targetName) {
+    els.push(currEl);
+  }
+
+  for (const child of currEl.children) {
+    els.push(...findAllByTagName(child, targetName));
+  }
+
+  return els;
+}
+
+function findAllByTypeAndName(currEl, targetType, targetName) {
+  const els = [];
+
+  if (currEl.getAttribute(targetType) === targetName) {
+    els.push(currEl);
+  }
+
+  for (const child of currEl.children) {
+    els.push(...findAllByTypeAndName(child, targetType, targetName));
+  }
+
+  return els;
 }
 
 function findByTagName(currEl, targetName) {

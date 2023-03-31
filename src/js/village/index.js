@@ -1,7 +1,8 @@
 import VillageInfo from "./VillageInfo.js";
 import { getRandomBetween } from "../utils/index.js";
+import { customQuerySelector } from "../utils/customQuerySelector.js";
 
-const villageMap = document.querySelector("#village-map");
+const villageMap = customQuerySelector("#village-map");
 const villageMapRect = villageMap.getBoundingClientRect();
 const villageMapInfo = {
   childrenInfos: [],
@@ -22,13 +23,10 @@ export function renderVillageEls() {
 function createVillageEl(villageInfo) {
   createdVillageNames.add(villageInfo.name);
   const villageEl = villageInfo.createEl();
-  villageEl
-    .querySelector(".inner-wrapper")
-    .append(
-      ...villageInfo.childrenInfos.map((childInfo) =>
-        createVillageEl(childInfo)
-      )
-    );
+
+  customQuerySelector(".inner-wrapper", villageEl).append(
+    ...villageInfo.childrenInfos.map((childInfo) => createVillageEl(childInfo))
+  );
   return villageEl;
 }
 

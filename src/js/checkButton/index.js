@@ -1,6 +1,8 @@
-import { customQuerySelector } from "../utils/customQuerySelector.js";
-import { customQuerySelectorAll } from "../utils/customQuerySelectorAll.js";
-import { mergeSort } from "../utils/mergeSort.js";
+import {
+  customQuerySelector,
+  customQuerySelectorAll,
+} from "../utils/customQuerySelector.js";
+import { customMergeSort } from "../utils/customMergeSort.js";
 
 const checkButton = customQuerySelector("#check-btn");
 
@@ -31,7 +33,7 @@ function findMailboxVillagesData() {
 function renderSortedVillageNamesBySize(mailboxVillagesData) {
   const sortedVillagesEl = customQuerySelector("#sorted-villages");
 
-  const sortedVillageNames = mergeSort(mailboxVillagesData).map(
+  const sortedVillageNames = customMergeSort(mailboxVillagesData).map(
     (village) => village.name
   );
 
