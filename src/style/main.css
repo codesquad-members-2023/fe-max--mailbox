@@ -54,3 +54,8 @@ main div {
   font-size: 2rem;
   text-indent: -2rem;
 }
+
+.mail-box {
+  background-image: url("../img/mailbox.png");
+  background-repeat: no-repeat;
+}
