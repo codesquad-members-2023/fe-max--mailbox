@@ -1,0 +1,25 @@
+{
+  "name": "mailbox",
+  "version": "1.0.0",
+  "description": "## 학습 목표",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qkdflrgs/fe-max--mailbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qkdflrgs/fe-max--mailbox/issues"
+  },
+  "homepage": "https://github.com/qkdflrgs/fe-max--mailbox#readme",
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "prettier": "^2.8.4"
+  }
+}
