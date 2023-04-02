@@ -36,7 +36,7 @@ export class Village {
 		this.left = this.getRandomLeft();
 
 		const neighborVillages = Array.from(this.parentNode.children);
-		const isVillageLocationNotOverLap = neighborVillages.every(this.isOverLap, this);
+		const isVillageLocationNotOverLap = neighborVillages.every(this.isNotOverLap, this);
 
 		if (neighborVillages.length === 0) {
 			return;
@@ -50,7 +50,7 @@ export class Village {
 		this.setRandomLocate();
 	}
 
-	isOverLap(ref) {
+	isNotOverLap(ref) {
 		return (
 			this.left + this.width < ref.offsetLeft ||
 			this.left > ref.offsetLeft + ref.offsetWidth ||
