@@ -26,7 +26,7 @@ export class Village {
 
 	getRandomHeight() {
 		const maxHeight = this.parentNode.offsetHeight * 0.5;
-		const minHeight = this.parentNode.offsetWidth * 0.2;
+		const minHeight = this.parentNode.offsetHeight * 0.2;
 
 		return Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
 	}
@@ -36,11 +36,12 @@ export class Village {
 		this.left = this.getRandomLeft();
 
 		const neighborVillages = Array.from(this.parentNode.children);
+		const isVillageLocationNotOverLap = neighborVillages.every(this.isOverLap, this);
 
 		if (neighborVillages.length === 0) {
 			return;
 		}
-		if (neighborVillages.every(this.isOverLap, this)) {
+		if (isVillageLocationNotOverLap) {
 			return;
 		}
 
@@ -50,16 +51,12 @@ export class Village {
 	}
 
 	isOverLap(ref) {
-		if (
+		return (
 			this.left + this.width < ref.offsetLeft ||
 			this.left > ref.offsetLeft + ref.offsetWidth ||
 			this.top + this.height < ref.offsetTop ||
 			this.top > ref.offsetTop + ref.offsetHeight
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		);
 	}
 
 	getRandomTop() {

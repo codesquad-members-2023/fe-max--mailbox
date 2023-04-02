@@ -1,28 +1,27 @@
 export function myQuerySelector(selector) {
-	const selectorName = selector.substr(1);
-	if (selector.at(0) === '#') {
-		return findNodeById(selectorName);
-	} else if (selector.at(0) === '.') {
-		return findNodeByClassName(selectorName);
+	if (selector.startsWith('#')) {
+		return findNodeById(selector.slice(1));
+	} else if (selector.startsWith('.')) {
+		return findNodeByClassName(selector.slice(1));
 	} else {
 		return findNodeByTagName(selector);
 	}
 }
 
 export function myQuerySelectorAll(selector) {
-	const selectorName = selector.substr(1);
-	if (selector.at(0) === '#') {
-		return [findNodeById(selectorName)];
+	if (selector.startsWith('#')) {
+		return [findNodeById(selector.slice(1))];
 	} else if (selector.at(0) === '.') {
-		return findNodeByClassNameAll(selectorName);
+		return findNodeByClassNameAll(selector.slice(1));
 	} else {
 		return findNodeByTagNameAll(selector);
 	}
 }
 
 function walkPreOrder(node, nodes = []) {
-	if (!node) return nodes;
-
+	if (!node) {
+		return nodes;
+	}
 	nodes.push(node);
 	for (const child of node.children) {
 		walkPreOrder(child, nodes);

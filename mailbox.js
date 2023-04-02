@@ -6,8 +6,8 @@ export function makeMailbox() {
 }
 
 function makeRandomMailbox(village) {
-	const diceNum = Math.floor(Math.random() * 4);
-	if (diceNum === 0) {
+	const diceNum = Math.floor(Math.random() * 5);
+	if (diceNum === 1 || diceNum === 3) {
 		drawMailbox(village);
 	}
 	return;
