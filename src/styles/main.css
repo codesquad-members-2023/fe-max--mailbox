@@ -1,0 +1,72 @@
+body {
+  height: 100vh;
+  padding: 20px 10%;
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+section {
+  height: 80%;
+}
+
+#village-map {
+  padding: 15px;
+  position: relative;
+  flex-grow: 8;
+  border: 1px solid black;
+}
+
+#text-view {
+  flex-grow: 1;
+  font-size: 1.2rem;
+}
+
+#check-btn {
+  padding: 10px 20px;
+  background-color: rgb(235, 35, 11);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.village {
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  border: 3px solid rgb(0, 118, 185);
+  border-radius: 10px;
+}
+
+.village.highlight {
+  border-color: rgb(235, 35, 11);
+}
+
+.inner-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.village-name {
+  font-weight: bold;
+}
+
+.mailbox {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  background: url("/src/assets/mailbox.png") center no-repeat;
+  background-size: contain;
+}
