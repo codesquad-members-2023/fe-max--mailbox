@@ -4,6 +4,9 @@ export const customQuerySelector = querySelectorFactory(false);
 function querySelectorFactory(isAll) {
   return function (selector, startEl = document.body) {
     const [selectorType, selectorName] = parseSelector(selector);
+
+    if (selectorType === null) throw new Error(`Invalid Selector: ${selector}`);
+
     const isTag = selectorType === "tag";
 
     if (isTag) {
@@ -31,8 +34,10 @@ function getSelectorType(selector) {
       return "class";
     case "#":
       return "id";
-    default:
+    case selectorIdentifier.match(/^[a-z]/)?.input:
       return "tag";
+    default:
+      return null;
   }
 }
 
